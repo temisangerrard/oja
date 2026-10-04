@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Oja — Nigerian games, no download</title>
+<meta name="description" content="A shelf for Nigerian browser games launched on X. Danfo, Lagos life, and the builds that followed." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #12110e;
+  --bg2: #1b1914;
+  --line: #2c2820;
+  --ink: #f4efe4;
+  --muted: #a89b86;
+  --yellow: #f0c generically;
+  --danfo: #f5c400;
+  --danfo-2: #ffdf6b;
+  --black: #0c0b09;
+  --chip: #262219;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body {
+  font-family: Outfit, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 420px at 80% -10%, rgba(245,196,0,.16), transparent 60%),
+    linear-gradient(180deg, #17150f 0%, #12110e 280px);
+}
+a { color: inherit; }
+.wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0 8px;
+}
+.brand { display: flex; gap: 10px; align-items: center; text-decoration: none; }
+.mark {
+  width: 34px; height: 22px; border-radius: 4px;
+  background: linear-gradient(#111 0 46%, var(--danfo) 46% 100%);
+  border: 1.5px solid #111;
+  box-shadow: 3px 3px 0 #000;
+}
+.brand b { font-family: Fraunces, serif; font-size: 22px; letter-spacing: -0.03em; }
+.brand span { color: var(--muted); font-size: 13px; margin-left: 6px; }
+nav a { color: var(--muted); text-decoration: none; margin-left: 16px; font-size: 14px; }
+nav a:hover { color: var(--ink); }
+.hero { padding: 28px 0 8px; display: grid; grid-template-columns: 1.3fr .7fr; gap: 22px; align-items: end; }
+h1 {
+  font-family: Fraunces, serif; font-weight: 560; letter-spacing: -0.035em;
+  font-size: clamp(40px, 6vw, 68px); line-height: .92; margin: 0 0 14px;
+}
+h1 em { font-style: italic; color: var(--danfo); }
+.lede { color: var(--muted); font-size: 17px; max-width: 46ch; margin: 0; line-height: 1.45; }
+.stat {
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
+}
+.stat b { display: block; font-family: Fraunces, serif; font-size: 28px; }
+.stat small { color: var(--muted); }
+.bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 18px; }
+button.chip, a.chip {
+  border: 1px solid var(--line); background: var(--chip); color: var(--ink);
+  border-radius: 999px; padding: 8px 12px; font: 500 13px Outfit, sans-serif; cursor: pointer;
+}
+button.chip.on, a.chip.on { background: var(--danfo); color: #1a1400; border-color: var(--danfo); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.card {
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+  display: flex; flex-direction: column; min-height: 250px; position: relative;
+}
+.card.featured { border-color: #6d5a12; box-shadow: inset 0 0 0 1px rgba(245,196,0,.25); }
+.top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.city { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--danfo-2); }
+.badge { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; color: var(--muted); }
+.card h2 { font-family: Fraunces, serif; font-size: 28px; margin: 14px 0 6px; letter-spacing: -0.03em; }
+.hook { color: var(--muted); line-height: 1.4; margin: 0 0 12px; flex: 1; }
+.meta { font-size: 13px; color: #cbbfaa; margin-bottom: 14px; }
+.meta a { color: var(--danfo-2); }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tags i { font-style: normal; font-size: 12px; background: #2a261c; border-radius: 999px; padding: 4px 8px; color: #ddd2c0; }
+.play {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--danfo); color: #1a1400; text-decoration: none; font-weight: 600;
+  border-radius: 12px; padding: 11px 12px;
+}
+.play.dead { background: #2a261c; color: var(--muted); pointer-events: none; }
+.submit {
+  margin: 28px 0 10px; border: 1px dashed #4a4130; border-radius: 18px; padding: 18px;
+  display: flex; justify-content: space-between; gap: 16px; align-items: center;
+}
+.submit h3 { margin: 0 0 6px; font-family: Fraunces, serif; font-size: 26px; }
+.submit p { margin: 0; color: var(--muted); }
+.submit a {
+  background: #fff; color: #111; text-decoration: none; font-weight: 600;
+  border-radius: 12px; padding: 11px 14px; white-space: nowrap;
+}
+footer { color: var(--muted); font-size: 13px; padding: 22px 0 40px; }
+@media (max-width: 760px) {
+  .hero, .submit { grid-template-columns: 1fr; display: grid; }
+  nav .hide { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#top"><i class="mark"></i><b>Oja</b><span>browser games</span></a>
+  <nav>
+    <a class="hide" href="https://github.com/temisangerrard/oja">GitHub</a>
+    <a href="#submit">List a game</a>
+  </nav>
+</header>
+<section class="hero" id="top">
+  <div>
+    <h1>Nigerian games.<br/><em>No download.</em></h1>
+    <p class="lede">A shelf for the browser games Nigerians shipped on X. Danfo first, then the Lagos life sims that followed. Play opens the creator’s site.</p>
+  </div>
+  <div class="stat">
+    <b id="count">7</b>
+    <small>games on the shelf · late Sept to early Oct 2026 wave, plus the conductor demo</small>
+  </div>
+</section>
+<div class="bar" id="filters"></div>
+<div class="grid" id="grid"></div>
+<section class="submit" id="submit">
+  <div>
+    <h3>Built one?</h3>
+    <p>Send the title, your X handle, the play link, and one line on the Lagos (or city) hook. Open a GitHub issue and it gets a card.</p>
+  </div>
+  <a href="https://github.com/temisangerrard/oja/issues/new?title=List%20a%20game&body=Title:%0ACreator%20handle:%0APlay%20URL:%0ACity:%0AOne-line%20hook:%0ALaunch%20date:">Submit a game</a>
+</section>
+<footer>Games open on the creator’s site. Oja does not host them, take a cut, or invent player counts. Counts on cards are what creators or outlets reported.</footer>
+</div>
+<script>
+const GAMES = [
+  {
+    title: "Lagos Run",
+    creator: "Opeyemi Adeniran",
+    handle: "eureka_seamless",
+    url: "https://danfo.horpey.dev/",
+    date: "2026-09-26",
+    city: "Lagos",
+    tags: ["driving", "single-player"],
+    hook: "Drive a danfo from Ojuelegba toward Yaba. Load passengers, dodge okadas, hit the horn.",
+    note: "Spare-time build, about 4–5 weeks. Creator reported ~7,000 players in two days, later 85,000+ in week one.",
+    status: "live",
+    featured: true
+  },
+  {
+    title: "Lagos Life",
+    creator: "Shalom Rayhamen",
+    handle: "Shalom_HeyEliy",
+    url: "https://lagoslife.eliysites.com/",
+    date: "2026-10-01",
+    city: "Lagos",
+    tags: ["life-sim", "multiplayer"],
+    hook: "Sims-style shared Lagos. Work, rent, visit Amala Shitta, CcHub, The Palms, the beach.",
+    note: "Creator said 100,000+ users by 3 October. 18+. Optional paid virtual naira, no cash-out.",
+    status: "live",
+    featured: false
+  },
+  {
+    title: "Road to Number One",
+    creator: "Moyo",
+    handle: "shrimpingwhale",
+    url: "https://road2number1.netlify.app/",
+    date: "2026-10-03",
+    city: "Lagos",
+    tags: ["music", "single-player"],
+    hook: "Leave your city for Lagos, borrow a laptop, drop songs, chase Number One.",
+    note: "Shipped the day after Lagos Life, aimed at the same timeline.",
+    status: "live",
+    featured: false
+  },
+  {
+    title: "PH Lifestyle",
+    creator: "Dx",
+    handle: "danieldxdere",
+    url: "",
+    date: "2026-10-03",
+    city: "Port Harcourt",
+    tags: ["life-sim", "multiplayer"],
+    hook: "Port Harcourt multiplayer. Roast bole, catch a bus, gist, spray money at an owambe.",
+    note: "Launch post used a short link that was not expanded here. Guest play.",
+    status: "link-pending",
+    featured: false
+  },
+  {
+    title: "Lagos Monopoly",
+    creator: "olufowosere",
+    handle: "olufowosere",
+    url: "https://monopoly.olufowosere.com/",
+    date: "2026-10-04",
+    city: "Lagos",
+    tags: ["board", "multiplayer"],
+    hook: "Lagos board. Play friends or the AI.",
+    note: "Built because the physical Lagos Monopoly was hard to get.",
+    status: "live",
+    featured: false
+  },
+  {
+    title: "Lagos Runner",
+    creator: "Akorede",
+    handle: "Kayloaded1",
+    url: "https://akorede12.itch.io/lagos-runner-2",
+    date: "2026-08-28",
+    city: "Lagos",
+    tags: ["runner", "single-player"],
+    hook: "Run the street, dodge danfos, collect coins.",
+    note: "Free on itch. Earlier than the September wave.",
+    status: "live",
+    featured: false
+  },
+  {
+    title: "How to Be a Conductor in Lagos",
+    creator: "Ayokanmi David",
+    handle: "",
+    url: "",
+    date: "2025-10-16",
+    city: "Lagos",
+    tags: ["prototype", "conductor"],
+    hook: "Call the route, collect fare, dodge LASTMA. Unreal demo, not a browser drop.",
+    note: "October 2025 job-seeking prototype. Viral clip, no public play URL.",
+    status: "demo",
+    featured: false
+  }
+];
+const filters = ["All", "Lagos", "Driving", "Life sim", "Multiplayer", "Demo"];
+let current = "All";
+const bar = document.getElementById("filters");
+filters.forEach(f => {
+  const b = document.createElement("button");
+  b.className = "chip" + (f === "All" ? " on" : "");
+  b.textContent = f;
+  b.onclick = () => { current = f; [...bar.children].forEach(c => c.classList.toggle("on", c.textContent === f)); render(); };
+  bar.appendChild(b);
+});
+function match(g) {
+  if (current === "All") return true;
+  if (current === "Lagos") return g.city === "Lagos";
+  if (current === "Driving") return g.tags.includes("driving") || g.tags.includes("runner");
+  if (current === "Life sim") return g.tags.includes("life-sim");
+  if (current === "Multiplayer") return g.tags.includes("multiplayer");
+  if (current === "Demo") return g.status !== "live";
+  return true;
+}
+function render() {
+  const list = GAMES.filter(match).sort((a,b) => b.date.localeCompare(a.date) || (b.featured - a.featured));
+  document.getElementById("count").textContent = GAMES.length;
+  document.getElementById("grid").innerHTML = list.map(g => {
+    const play = g.url
+      ? `<a class="play" href="${g.url}" target="_blank" rel="noopener">Play</a>`
+      : `<span class="play dead">${g.status === "demo" ? "Demo only" : "Link pending"}</span>`;
+    const handle = g.handle ? `<a href="https://x.com/${g.handle}" target="_blank" rel="noopener">@${g.handle}</a>` : g.creator;
+    return `<article class="card${g.featured ? " featured" : ""}">
+      <div class="top"><span class="city">${g.city}</span><span class="badge">${g.date}</span></div>
+      <h2>${g.title}</h2>
+      <p class="hook">${g.hook}</p>
+      <div class="tags">${g.tags.map(t => `<i>${t}</i>`).join("")}</div>
+      <div class="meta">${g.creator} · ${handle}<br/>${g.note}</div>
+      ${play}
+    </article>`;
+  }).join("") || "<p class='lede'>Nothing in this filter yet.</p>";
+}
+render();
+</script>
+</body>
+</html>
