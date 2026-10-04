@@ -14,10 +14,8 @@
   --line: #2c2820;
   --ink: #f4efe4;
   --muted: #a89b86;
-  --yellow: #f0c generically;
   --danfo: #f5c400;
   --danfo-2: #ffdf6b;
-  --black: #0c0b09;
   --chip: #262219;
 }
 * { box-sizing: border-box; }
@@ -59,15 +57,15 @@ h1 em { font-style: italic; color: var(--danfo); }
 .stat b { display: block; font-family: Fraunces, serif; font-size: 28px; }
 .stat small { color: var(--muted); }
 .bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 18px; }
-button.chip, a.chip {
+button.chip {
   border: 1px solid var(--line); background: var(--chip); color: var(--ink);
   border-radius: 999px; padding: 8px 12px; font: 500 13px Outfit, sans-serif; cursor: pointer;
 }
-button.chip.on, a.chip.on { background: var(--danfo); color: #1a1400; border-color: var(--danfo); }
+button.chip.on { background: var(--danfo); color: #1a1400; border-color: var(--danfo); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
 .card {
   background: var(--bg2); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
-  display: flex; flex-direction: column; min-height: 250px; position: relative;
+  display: flex; flex-direction: column; min-height: 250px;
 }
 .card.featured { border-color: #6d5a12; box-shadow: inset 0 0 0 1px rgba(245,196,0,.25); }
 .top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
@@ -126,7 +124,7 @@ footer { color: var(--muted); font-size: 13px; padding: 22px 0 40px; }
 <section class="submit" id="submit">
   <div>
     <h3>Built one?</h3>
-    <p>Send the title, your X handle, the play link, and one line on the Lagos (or city) hook. Open a GitHub issue and it gets a card.</p>
+    <p>Send the title, your X handle, the play link, and one line on the city hook. Open a GitHub issue and it gets a card.</p>
   </div>
   <a href="https://github.com/temisangerrard/oja/issues/new?title=List%20a%20game&body=Title:%0ACreator%20handle:%0APlay%20URL:%0ACity:%0AOne-line%20hook:%0ALaunch%20date:">Submit a game</a>
 </section>
@@ -246,7 +244,7 @@ function match(g) {
   return true;
 }
 function render() {
-  const list = GAMES.filter(match).sort((a,b) => b.date.localeCompare(a.date) || (b.featured - a.featured));
+  const list = GAMES.filter(match).sort((a,b) => b.date.localeCompare(a.date));
   document.getElementById("count").textContent = GAMES.length;
   document.getElementById("grid").innerHTML = list.map(g => {
     const play = g.url
@@ -261,7 +259,7 @@ function render() {
       <div class="meta">${g.creator} · ${handle}<br/>${g.note}</div>
       ${play}
     </article>`;
-  }).join("") || "<p class='lede'>Nothing in this filter yet.</p>";
+  }).join("") || "<p class=\"lede\">Nothing in this filter yet.</p>";
 }
 render();
 </script>
